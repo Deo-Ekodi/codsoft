@@ -59,6 +59,10 @@ struct SkipList {
 
 // Create Book
 Book* create_book(const char* author_name, const char* isbn_num, const char* title_str) {
+    if (strlen(author_name) > 255 || strlen(isbn_num) > 255 || strlen(title_str) > 255) {
+        std::cerr << "ERROR: Input length exceeds maximum allowed size." << std::endl;
+        return nullptr;
+    }
     Book* book = new Book();
     book->author.name = author_name;
     book->isbn.number = isbn_num;
